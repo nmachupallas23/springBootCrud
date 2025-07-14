@@ -40,7 +40,7 @@ public class UserController {
      @CrossOrigin(origins = "http://localhost:4200", 
             methods = {RequestMethod.POST}, // Específico para PUT
             allowedHeaders = "*")
-    @PostMapping(value = "/add", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping("/add")
     public ResponseEntity<User> createUser(@RequestBody User user) {
         return new ResponseEntity<User>(userService.create(user),HttpStatus.CREATED);        
     }
@@ -52,10 +52,7 @@ public class UserController {
     public User updateUser(@RequestBody User user) {
         return userService.update(user);
     }
-    @CrossOrigin(origins = "http://localhost:4200", 
-            methods = {RequestMethod.DELETE}, // Específico para PUT
-            allowedHeaders = "*")
-    @DeleteMapping(value ="/delete/{id}",consumes = MediaType.APPLICATION_JSON_VALUE)
+    @DeleteMapping("/delete/{id}")
     public void deleteUser(@PathVariable Integer id) {
         userService.delete(id);
     }
